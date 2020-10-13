@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import './App.css';
 
 import Pages from './components/firstPages';
 import Welcome from './components/Welcome';
@@ -10,47 +11,21 @@ import Lifecycle from './components/LifecycleA';
 import Fragment from './components/FragmentDemo';
 import Table from './components/Table';
 import ParentComponent from './components/ParentComponent';
+import Form from './todolist/Form';
+import TodoList from './todolist/TodoList';
 
 function App() {
+  const [inputText, setInputText] = useState('');
+  const [Todos, setTodos] = useState([]);
   return (
     <div className="App">
-     {/* <Pages name="Bruce" heroname="batman">
-        <p>This is children</p>
-      </Pages>
-
-      <Pages name="Clark" heroname="superman">
-        <button>Action</button>
-      </Pages>
-
-      <Pages name="Diana" heroname="wonder woman">
-        <h2>this is hero</h2>
-      </Pages>
-
-      <Welcome  name="Bruce" heroname="batman"/>
-      <Welcome  name="Clark" heroname="superman"/>
-      <Welcome  name="Diana" heroname="wonder woman"/>
-
-      <Hello />
-
-      <State />
-*/}
-      {/*<Folder name='Desktop' isOpen={true}>
-
-        <Folder name='Music'>
-          <File name="all.start.mp4"/>
-          <File name="express.start.mp4"/>
-        </Folder>
-        <File name="dog"/>
-        <File name="cat"/>
-
-      </Folder>
-
-      <Folder name='Application'/>*/}
-
-        {/* <Lifecycle />
-        <Fragment />
-        <Table /> */}
-        <ParentComponent />
+      <header>
+        <h1>
+          TodoList
+        </h1>
+      </header>
+      <Form inputText={inputText} todos={Todos} setTodos={setTodos} setInputText={setInputText}/>
+      <TodoList setTodos={setTodos} todos={Todos}/>
     </div>
   );
 }
