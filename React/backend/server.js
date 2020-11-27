@@ -1,5 +1,21 @@
 import express from 'express';
 import data from './data';
+import dotenv from 'dotenv';
+import config from './config';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import userRoute from './routes/userRoute';
+
+dotenv.config();
+mongoose.connect(process.env.DB_CONNECT,
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
+    function (err) {
+        if (!err) {
+            console.log('success connect');
+        } else {
+            console.log('false');
+        }
+    });
 
 const app = express();
 
@@ -17,5 +33,9 @@ app.get('/api/products/:id', (req, res) => {
     }
 
 })
+
+app.use(bodyParser.json());
+app.use('/api/users', userRoute);
+
 
 app.listen(5000)
